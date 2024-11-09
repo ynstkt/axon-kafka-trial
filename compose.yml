@@ -1,0 +1,48 @@
+services:
+  producer-db:
+    image: mysql:latest
+    container_name: producer-db
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: trial
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3306:3306"
+
+  kafka-0:
+    image: bitnami/kafka
+    hostname: kafka-0
+    ports:
+      - "9094:9094"
+    environment:
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka-0:9093
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-0:9092,EXTERNAL://localhost:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+    networks:
+      - network0
+
+  kafka-ui-0:
+    container_name: kafka-ui-0
+    image: provectuslabs/kafka-ui:v0.7.2
+    depends_on:
+      - kafka-0
+    ports:
+      - "9080:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=kafka-0
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka-0:9092
+      - AUTH_TYPE="LOGIN_FORM"
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=admin
+    networks:
+      - network0
+
+networks:
+  network0:
