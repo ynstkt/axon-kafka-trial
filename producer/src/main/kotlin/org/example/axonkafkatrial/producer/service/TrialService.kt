@@ -5,9 +5,9 @@ import org.axonframework.eventhandling.gateway.EventGateway
 import org.example.axonkafkatrial.producer.command.DocCreate
 import org.example.axonkafkatrial.producer.command.OtherCreate
 import org.example.axonkafkatrial.shared.event.DocCreated
+import org.example.axonkafkatrial.shared.event.OtherCreated
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import java.util.UUID
 
 @Service
 class TrialService(private val eventGateway: EventGateway) {
@@ -27,13 +27,3 @@ class TrialService(private val eventGateway: EventGateway) {
         eventGateway.publish(event)
     }
 }
-
-//data class DocCreated(
-//    val docId: UUID,
-//    val body: String,
-//)
-
-data class OtherCreated(
-    val id: UUID,
-    val body: String,
-)

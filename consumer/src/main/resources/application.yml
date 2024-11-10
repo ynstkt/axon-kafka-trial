@@ -21,3 +21,6 @@ axon:
     consumer:
       event-processor-mode: tracking
     default-topic: doc-topic
+application:
+  kafka:
+    topics: doc-topic, default-topic
