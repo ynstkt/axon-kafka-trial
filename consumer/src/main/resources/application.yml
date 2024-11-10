@@ -3,3 +3,7 @@ server:
 axon:
   axonserver:
     enabled: false
+  serializer:
+    events: jackson
+  kafka:
+    bootstrap-servers: localhost:9094
