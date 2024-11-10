@@ -12,7 +12,8 @@ spring:
 axon:
   axonserver:
     enabled: false
-  kafka:
-    bootstrap-servers: localhost:9094
   serializer:
     events: jackson
+  kafka:
+    bootstrap-servers: localhost:9094
+    default-topic: doc-topic
