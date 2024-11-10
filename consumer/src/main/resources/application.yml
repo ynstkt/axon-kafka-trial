@@ -7,3 +7,6 @@ axon:
     events: jackson
   kafka:
     bootstrap-servers: localhost:9094
+    consumer:
+      event-processor-mode: tracking
+    default-topic: doc-topic
