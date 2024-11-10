@@ -20,6 +20,8 @@ dependencies {
     implementation("org.axonframework:axon-spring-boot-starter:4.10.2")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
     implementation("org.axonframework.extensions.kafka:axon-kafka-spring-boot-starter:4.10.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly ("com.mysql:mysql-connector-j")
 }
 
 kotlin {

@@ -11,6 +11,18 @@ services:
     ports:
       - "3306:3306"
 
+  consumer-db:
+    image: mysql:latest
+    container_name: consumer-db
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: trial
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3316:3306"
+
   kafka-0:
     image: bitnami/kafka
     hostname: kafka-0
