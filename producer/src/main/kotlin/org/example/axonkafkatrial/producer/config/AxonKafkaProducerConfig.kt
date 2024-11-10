@@ -1,7 +1,7 @@
 package org.example.axonkafkatrial.producer.config
 
 import org.axonframework.extensions.kafka.eventhandling.producer.TopicResolver
-import org.example.axonkafkatrial.producer.service.DocCreated
+import org.example.axonkafkatrial.shared.event.DocCreated
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import java.util.*

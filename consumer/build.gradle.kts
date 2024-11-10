@@ -14,6 +14,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.example:axon_kafka_trial_shared")
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.axonframework:axon-spring-boot-starter:4.10.2")
 }
