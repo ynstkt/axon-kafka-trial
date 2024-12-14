@@ -19,10 +19,10 @@ axon:
   kafka:
     bootstrap-servers: localhost:9094
     consumer:
-#      event-processor-mode: tracking
-      event-processor-mode: subscribing
-    properties:
-      auto.offset.reset: earliest
+      event-processor-mode: tracking
+#      event-processor-mode: subscribing
+#    properties:
+#      auto.offset.reset: earliest
     default-topic: doc-topic
 application:
   kafka:
