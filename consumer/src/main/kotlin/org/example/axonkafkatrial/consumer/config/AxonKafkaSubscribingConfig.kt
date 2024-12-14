@@ -19,8 +19,8 @@ class AxonKafkaSubscribingConfig {
         kafkaMessageSourceConfigurer.configureSubscribableSource {
             subscribableKafkaMessageSource
         }
-        configurer.registerModule(kafkaMessageSourceConfigurer)
         configurer
+            .registerModule(kafkaMessageSourceConfigurer)
             .eventProcessing()
             .registerSubscribingEventProcessor("org.example.axonkafkatrial.consumer.listener") {
                 subscribableKafkaMessageSource
