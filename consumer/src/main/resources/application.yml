@@ -2,9 +2,9 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3316/trial
-    username: docker
-    password: docker
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3316}/${DB_NAME:trial}
+    username: ${DB_USER:docker}
+    password: ${DB_USER:docker}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql
@@ -17,7 +17,9 @@ axon:
     general: jackson
     events: jackson
   kafka:
-    bootstrap-servers: localhost:9094
+    # 複数プロセスでclient-idが重複しないようにする
+    client-id: axon-kafka-trial-consumer-${random.uuid}
+    bootstrap-servers: ${BOOTSTRAP_SERVERS:localhost:9094}
     consumer:
       event-processor-mode: tracking
 #      event-processor-mode: subscribing

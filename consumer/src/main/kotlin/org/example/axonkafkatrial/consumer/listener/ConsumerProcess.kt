@@ -17,13 +17,13 @@ class ConsumerProcess {
         if(deadLetter != null) {
             logger.info("handling dead letter: $deadLetter")
         }
-        sometimesThrowException()
+//        sometimesThrowException()
         logger.info("event received: $event")
     }
 
     @EventHandler
     fun on(event: OtherCreated) {
-        sometimesThrowException()
+//        sometimesThrowException()
         logger.info("event received: $event")
     }
 

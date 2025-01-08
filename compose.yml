@@ -10,6 +10,8 @@ services:
       TZ: 'Asia/Tokyo'
     ports:
       - "3306:3306"
+    networks:
+      - network0
 
   consumer-db:
     image: mysql:latest
@@ -22,6 +24,8 @@ services:
       TZ: 'Asia/Tokyo'
     ports:
       - "3316:3306"
+    networks:
+      - network0
 
   kafka-0:
     image: bitnami/kafka
@@ -55,6 +59,40 @@ services:
       - SPRING_SECURITY_USER_PASSWORD=admin
     networks:
       - network0
+
+  consumer-1:
+    image: axon_kafka_trial_consumer:1.0-SNAPSHOT
+    depends_on:
+      - kafka-0
+      - consumer-db
+    environment:
+      - BOOTSTRAP_SERVERS=kafka-0:9092
+      - DB_HOST=consumer-db
+      - DB_PORT=3306
+      - DB_NAME=trial
+      - DB_USER=docker
+      - DB_PASS=docker
+    networks:
+      - network0
+    profiles:
+      - extra
+
+  consumer-2:
+    image: axon_kafka_trial_consumer:1.0-SNAPSHOT
+    depends_on:
+      - kafka-0
+      - consumer-db
+    environment:
+      - BOOTSTRAP_SERVERS=kafka-0:9092
+      - DB_HOST=consumer-db
+      - DB_PORT=3306
+      - DB_NAME=trial
+      - DB_USER=docker
+      - DB_PASS=docker
+    networks:
+      - network0
+    profiles:
+      - extra
 
 networks:
   network0:
